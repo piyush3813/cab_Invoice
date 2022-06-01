@@ -22,6 +22,7 @@ public class CabInvoiceGeneratorTest
         double totalfare =  cabInvoiceGenerator.getfare(distance,time);
         Assert.assertEquals(52, totalfare,0.0);
     }
+    
 
     @Test
     public void givenDistanceAndTime_WhenLessThanMinimumFare_ShouldReturnTotalFare()
@@ -31,5 +32,14 @@ public class CabInvoiceGeneratorTest
         double time = 2;
         double totalfare =  cabInvoiceGenerator.getfare(distance,time);
         Assert.assertEquals(5, totalfare,0.0);
+    }
+
+    @Test
+    public void givenMultipleRides_ShouldReturnTotalFare()
+    {
+        CabInvoiceGenerator cabInvoiceGenerator =new CabInvoiceGenerator();
+        Ride[] rides = { new Ride(5.0,2),new Ride(0.1,2)};
+        double totalfare =  cabInvoiceGenerator.calculateTotalFare(rides);
+        Assert.assertEquals(57, totalfare,0.0);
     }
 }
